@@ -14,8 +14,6 @@ links_menu = [
     {'href': 'products_classic', 'name': 'классика'}
 ]
 
-module_dir = os.path.dirname(__file__)
-
 links_catalog = [
     {'href': 'index', 'name': 'домой'},
     {'href': 'products', 'name': 'продукты'},
@@ -31,8 +29,10 @@ def index(request):
     return render(request, 'mainapp/index.html', content)
 
 
-def products(request, pk=None):
-    print(pk)
+module_dir = os.path.dirname(__file__)
+
+
+def products(request):
 
     file_path = os.path.join(module_dir, 'fixtures/products.json')
     products = json.load(open(file_path, encoding='utf-8'))
@@ -81,7 +81,3 @@ def main(request):
     }
 
     return render(request, 'mainapp/index.html', content)
-
-
-
-
