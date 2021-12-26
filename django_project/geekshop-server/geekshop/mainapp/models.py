@@ -1,25 +1,30 @@
 from django.db import models
 
-# Create your models here.
-
 
 class ProductCategory(models.Model):
-    name = models.CharField(verbose_name="имя", max_length=64, unique=True)
-    descriptions = models.TextField(verbose_name="описание", blank=True)
+    name = models.CharField('категория товара', max_length=64)
+    description = models.TextField('описание', blank=True)
+
+    class Meta:
+        verbose_name = 'категория товаров'
+        verbose_name_plural = 'категории товаров'
 
     def __str__(self):
-        return self.name
+        return f'Категория {self.name}'
 
 
 class Product(models.Model):
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
-    name = models.CharField(verbose_name='имя продукта', max_length=128)
-    image = models.ImageField(blank=True)
-    short_desc = models.CharField(verbose_name="краткое описание товара", max_length=60, blank=True)
-    description = models.TextField(verbose_name="описание продукта", blank=True)
-    is_active = models.BooleanField(verbose_name='активна', default=True)
-    price = models.DecimalField(verbose_name="цена продукта", max_digits=8, decimal_places=2, default=0)
-    quantity = models.PositiveIntegerField(verbose_name="количество на складе", default=0)
+    name = models.CharField('имя', max_length=64)
+    image = models.ImageField(upload_to='products_images', blank=True)
+    description = models.TextField('описание', blank=True)
+    short_desc = models.CharField('краткое описание', max_length=64, blank=True)
+    price = models.DecimalField('цена', max_digits=8, decimal_places=2, default=0)
+    quantity = models.PositiveIntegerField('количество на складе', default=0)
+
+    class Meta:
+        verbose_name = 'товар'
+        verbose_name_plural = 'товары'
 
     def __str__(self):
-        return f"{self.name} ({self.category.name})"
+        return f'{self.name} ({self.category.name})'
