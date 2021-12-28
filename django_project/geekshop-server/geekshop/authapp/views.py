@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from authapp.forms import ShopUserLoginForm
+from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserUpdateForm
 
 
 def login(request):
@@ -14,12 +14,13 @@ def login(request):
             password = request.POST.get('password')
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
-                auth.login(request, user)  # cookie creation
+                auth.login(request, user)
                 return HttpResponseRedirect(reverse('main:index'))
     else:
         form = ShopUserLoginForm()
 
     context = {
+        'page_title': 'вход в систему',
         'form': form,
     }
     return render(request, 'authapp/login.html', context)
@@ -28,3 +29,39 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('main:index'))
+
+
+def register(request):
+    if request.method == 'POST':
+        form = ShopUserRegisterForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('main:index'))
+            # return HttpResponseRedirect(reverse('auth:greeting'))
+            # messages
+    else:
+        form = ShopUserRegisterForm()
+
+    context = {
+        'page_title': 'регистрация',
+        'form': form,
+    }
+    return render(request, 'authapp/register.html', context)
+
+
+def update(request):
+    if request.method == 'POST':
+        form = ShopUserUpdateForm(request.POST, request.FILES,
+                                  instance=request.user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('main:index'))
+            # return HttpResponseRedirect(reverse('auth:update'))
+    else:
+        form = ShopUserUpdateForm(instance=request.user)
+
+    context = {
+        'page_title': 'редактирование',
+        'form': form,
+    }
+    return render(request, 'authapp/update.html', context)

@@ -8,6 +8,7 @@ class ProductCategory(models.Model):
     class Meta:
         verbose_name = 'категория товаров'
         verbose_name_plural = 'категории товаров'
+        ordering = ['name']
 
     def __str__(self):
         return f'Категория {self.name}'
