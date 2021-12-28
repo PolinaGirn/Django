@@ -1,0 +1,23 @@
+Model
+View
+Controller
+
+user<>Controller<>(Model, View)
+
+Model      -> Model
+View       -> Templates
+Controller -> View
+
+MVC -> MVT
+
+ResolverMatch(
+	func=mainapp.views.index, 
+	args=(), 
+	kwargs={}, 
+	url_name=index, 
+	app_names=[], 
+	namespaces=[], 
+	route=
+)
+
+{{ request.resolver_match }}
