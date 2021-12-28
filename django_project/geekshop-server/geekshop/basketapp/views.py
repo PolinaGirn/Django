@@ -1,27 +1,38 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 
 from basketapp.models import Basket
 
 
+@login_required
 def index(request):
-    pass
+    basket = request.user.basket.all()
+    context = {
+        'page_title': 'корзина',
+        'basket': basket,
+    }
+    return render(request, 'basketapp/index.html', context)
 
 
-def add(request, pk):
-    # basket_item = request.user.basket_set.filter(
+@login_required
+def add(request, product_pk):
     basket_item = request.user.basket.filter(
-        product_id=pk
+        product_id=product_pk
     ).first()
-    # basket_item = Basket.objects.filter(
-    #     user=request.user,
-    #     product_id=pk
-    # ).first()
     if not basket_item:
         basket_item = Basket.objects.create(
             user=request.user,
-            product_id=pk
+            product_id=product_pk
         )
 
     basket_item.quantity += 1
     basket_item.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def remove(request, basket_pk):
+    basket_item = get_object_or_404(Basket, pk=basket_pk)
+    basket_item.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

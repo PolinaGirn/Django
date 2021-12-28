@@ -9,7 +9,7 @@
         </li>
         <li>
             <a href="{% url 'main:products' %}"
-               class="{% if request.resolver_match.url_name == 'products' %}active{% endif %}">
+               class="{% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'category_items' %}active{% endif %}">
                 продукты
             </a>
         </li>
@@ -39,5 +39,7 @@
         </li>
     </ul>
     <a href="#" class="search"></a>
-    <a href="{% url 'basket:index' %}" class="basket"></a>
+    <a href="{% url 'basket:index' %}" class="basket">
+        <span>{{ user.basket_total_cost|floatformat:0 }} руб ({{ user.basket_total_qty }} шт)</span>
+    </a>
 </div>

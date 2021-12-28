@@ -6,6 +6,6 @@ app_name = 'basketapp'
 
 urlpatterns = [
     path('', basketapp.index, name='index'),
-    path('add/<int:pk>/', basketapp.add, name='add'),
-    # re_path()
+    path('add/<int:product_pk>/', basketapp.add, name='add'),
+    path('remove/<int:basket_pk>/', basketapp.remove, name='remove'),
 ]
