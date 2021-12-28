@@ -11,3 +11,6 @@ class ShopUser(AbstractUser):
 
     def basket_total_qty(self):
         return sum(map(lambda x: x.quantity, self.basket.all()))
+
+    # def __str__(self):
+    #     pass
