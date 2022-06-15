@@ -2,7 +2,8 @@ from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-
+from .models import ShopUser
+from .utils import send_verification_mail
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserUpdateForm
 
 
@@ -24,6 +25,23 @@ def login(request):
     return render(request, 'authapp/login.html', context)
 
 
+def verify(request, email, key):
+    try:
+        user = ShopUser.objects.get(email=email, activation_key=key)
+        if user.is_activation_key_expired:
+            return render(request, 'authapp/verification.html', context={
+                'message': 'Key is expired'
+            })
+        user.activate()
+        user.save()
+        return render(request, 'authapp/verification.html', context={
+            'message': 'Success'
+        })
+    except ShopUser.DoesNotExist:
+        return render(request, 'authapp/verification.html', context={
+            'message': "Verification failed"
+        })
+
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('main:index'))
@@ -33,7 +51,8 @@ def register(request):
     if request.method == 'POST':
         form = ShopUserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            send_verification_mail(user)
             return HttpResponseRedirect(reverse('main:index'))
             # return HttpResponseRedirect(reverse('auth:greeting'))
             # messages

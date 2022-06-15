@@ -139,6 +139,7 @@ LOGIN_URL = '/auth/login/'
 # Email
 EMAIL_FILE_PATH = './mails/'
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+SITE_ADDRESS = 'http://localhost:8000/'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'localhost'
