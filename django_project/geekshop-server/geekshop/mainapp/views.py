@@ -21,11 +21,13 @@ def get_same_products(product):
 
 
 def index(request):
-    context = {
-        'page_title': 'главная',
-        'catalog_menu': get_catalog_menu(),
-    }
-    return render(request, 'mainapp/index.html', context)
+    return render(
+        request,
+        'mainapp/index.html',
+        context={
+            'title': 'главная',
+        }
+    )
 
 
 def products(request):
