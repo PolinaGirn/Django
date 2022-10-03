@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c7be7ac3-6c42-4c03-bfc2-a7318f3e4fe7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/authapp/templates/authapp/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/authapp/templates/authapp/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/geekshop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/geekshop/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/geekshop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/geekshop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/mainapp/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/mainapp/context_processors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/geekshop-server/geekshop/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +35,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../KatzenHaus/KatzenHaus" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">

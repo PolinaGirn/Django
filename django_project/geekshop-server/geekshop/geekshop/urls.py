@@ -19,11 +19,21 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('mainapp.urls', namespace='main')),
+    path('social/', include('social_django.urls', namespace='social')),
+    path('admin/', include('adminapp.urls', namespace='admin')),
     path('auth/', include('authapp.urls', namespace='auth')),
-    path('basket/', include('basketapp.urls', namespace='basket')),
-    path('myadmin/', include('adminapp.urls', namespace='myadmin')),
 
+    path('basket/', include('basketapp.urls', namespace='basket')),
+    # path('', include('mainapp.urls', name='index')),
+    path('', include('mainapp.urls', namespace='main')),
+    # path('contact', mineapp.contact, name='contact'),
+    # path('products/', mineapp.products, name='products'),
+    # path('products/<int:pk>', mineapp.category, name='category'),
+    # path('products/<int:pk>/<int:page>', mineapp.category, name='category'),
+    # path('products/<int:pk>', mineapp.products, name='products'),
+    # path('products/', mineapp.product, name='product'),
+
+    path('myadmin/', include('adminapp.urls', namespace='myadmin')),
     path('admin/', admin.site.urls),
 ]
 
